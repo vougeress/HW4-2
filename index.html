@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gaussian Splat Viewer</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Cinematic Navigation / Gaussian Splats</p>
+          <h1>Scene Preview</h1>
+          <p class="hint">
+            These .ply files use the SuperSplat packed layout. Convert them first with
+            <code>npm run convert -- input-data/&lt;scene&gt;.ply public/&lt;scene&gt;.ply -w</code>.
+          </p>
+        </div>
+        <div id="status" class="status">Waiting to load a scene...</div>
+      </header>
+
+      <section class="controls">
+        <div class="field">
+          <label for="scene-select">Choose a scene</label>
+          <select id="scene-select">
+            <option value="ConferenceHall.ply" selected>ConferenceHall (converted)</option>
+            <option value="outdoor-drone.ply">outdoor-drone (converted sample)</option>
+            <option value="Museume.ply">Museume (convert first)</option>
+            <option value="Theater.ply">Theater (convert first)</option>
+            <option value="outdoor-street.ply">outdoor-street (convert first)</option>
+            <option value="__custom">Custom path below</option>
+          </select>
+        </div>
+        <div class="field grow">
+          <label for="custom-path">Or type a direct path / URL</label>
+          <input id="custom-path" placeholder="outdoor-drone.ply or https://host/scene.ply" />
+        </div>
+        <div class="field">
+          <label>Camera controls</label>
+          <p class="hint">
+            Orbit: mouse drag. Move: <code>W/A/S/D</code> + <code>Q/E</code> (down/up). Speed: hold <code>Shift</code>.
+            Waypoints: <code>1</code> mark start, <code>2</code> mark end, <code>P</code> log pose, <code>F</code> replay precomputed path.
+          </p>
+        </div>
+        <div class="field">
+          <label>Recording</label>
+          <p class="hint">Canvas-only capture (no UI). Hotkeys: <code>Shift+R</code> / <code>Shift+S</code>. Outputs MP4 when supported, otherwise WebM.</p>
+          <div class="buttons">
+            <button id="rec-start" type="button">Start recording</button>
+            <button id="rec-stop" type="button">Stop & download</button>
+          </div>
+        </div>
+        <button id="load-button">Load scene</button>
+      </section>
+
+      <div id="viewer" class="viewer"></div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
